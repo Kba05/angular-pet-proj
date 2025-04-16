@@ -1,0 +1,1 @@
+To start mock json-server: npx json-server mock/db.json
