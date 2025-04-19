@@ -2,12 +2,15 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
-import { TuiButton, TuiTextfield } from '@taiga-ui/core';
+import { TuiButton, TuiDialogContext, TuiTextfield } from '@taiga-ui/core';
 import { TuiAutoFocus } from '@taiga-ui/cdk';
 import { TuiInputModule,  TuiTextfieldControllerModule } from '@taiga-ui/legacy';
 import { TuiFieldErrorPipe, TuiInputNumber, tuiValidationErrorsProvider,TuiCheckbox } from '@taiga-ui/kit';
 import { TuiError } from '@taiga-ui/core';
+import { injectContext } from '@taiga-ui/polymorpheus';
 
+import {v4 as uuidv4} from 'uuid';
+import { HousingLocation } from '../housinglocation';
 
 @Component({
     standalone: true,
@@ -37,6 +40,8 @@ import { TuiError } from '@taiga-ui/core';
     ],
 })
 export class CustomDialog {
+    public readonly context = injectContext<TuiDialogContext<HousingLocation, null>>();
+
     protected addHousingForm = new FormGroup({
         name: new FormControl<string | null>(null, Validators.required),
         city: new FormControl<string | null>(
@@ -59,11 +64,22 @@ export class CustomDialog {
     }
 
     protected submit(): void {
-        const homes = JSON.parse(localStorage.getItem('houses_aray') || '[]')
-        homes.push(this.addHousingForm.value)
-        localStorage.setItem('houses_aray', JSON.stringify(homes))
+        const formData = this.addHousingForm.value
+        const cleanedFormData: HousingLocation = {
+            id: uuidv4(),
+            name: formData.name ?? '',
+            city: formData.city ?? '',
+            state: formData.state ?? '',
+            photo: formData.photo ?? '',
+            availableUnits: formData.availableUnits ?? 0,
+            wifi: formData.wifi ?? false,
+            laundry: formData.laundry ?? false,
+            coordinates: formData.coordinates ?? ''
+        }
+        this.context.completeWith(cleanedFormData)
 
         alert('Дом успешно добавлен!')
+        
         this.addHousingForm.reset()
     }
 }

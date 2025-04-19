@@ -35,16 +35,22 @@ export class HomeComponent {
     }
     this.filteredLocationList = this.housingLocationList.filter((housingLocation) =>
       housingLocation?.city.toLowerCase().includes(text.toLowerCase()),
-    );
+    )
   }
 
   private readonly dialog = tuiDialog(CustomDialog, {
     dismissible: true,
     label: 'Add housing location'
-  });
+  })
 
   protected showDialog(): void {
-    this.dialog().subscribe();
+    this.dialog(null).subscribe({
+      next: (data) => {
+        const homes = this.housingLocationList
+        homes.push(data)
+        this.housingService.setHousingLocationsToLS(homes)
+      }
+    })
   }
 
 }
