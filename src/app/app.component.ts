@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 
 import { TuiRoot } from "@taiga-ui/core";
@@ -12,10 +12,6 @@ import { HousingService } from './housing.service';
   styleUrl: './app.component.less',
 })
 
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'homes';
-  housingService = inject(HousingService);
-  ngOnInit() {
-    this.housingService.removeHousingLocationsFromLS()
-  }
 }

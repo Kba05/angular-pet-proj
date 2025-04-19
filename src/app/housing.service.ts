@@ -1,12 +1,13 @@
-import {Injectable} from '@angular/core';
-import {HousingLocation} from './housinglocation';
+import { Injectable } from '@angular/core';
+import { HousingLocation } from './housinglocation';
+import mockData from './mock/db.json';
 
 @Injectable({
   providedIn: 'root',
 })
 export class HousingService {
-  url = 'http://localhost:3000/locations';
-  
+  private mockHousingLocations: HousingLocation[] = mockData.locations
+
   setHousingLocationsToLS(data:HousingLocation[]):void{
     window.localStorage.setItem('houses_aray',JSON.stringify(data))
   }
@@ -26,21 +27,23 @@ export class HousingService {
     
     if(housesFromLS.length !==0) return housesFromLS
     
-    const res = await fetch(this.url)
-    const data = await res.json() ?? []
-    this.setHousingLocationsToLS(data)
-    return data 
+    await new Promise(resolve => setTimeout(resolve, 300))
+    
+    this.setHousingLocationsToLS(this.mockHousingLocations)
+    return this.mockHousingLocations
   }
 
-  async getHousingLocationById(id: number): Promise<HousingLocation | undefined> {
-    const data = await fetch(`${this.url}?id=${id}`);
-    const locationJson = await data.json();
-    return locationJson[0] ?? {};
+  async getHousingLocationById(id: string): Promise<HousingLocation | undefined> {
+
+    await new Promise(resolve => setTimeout(resolve, 200));
+    
+    const housesFromLS = this.getHousingLocationsFromLS();
+    const searchIn = housesFromLS.length > 0 ? housesFromLS : this.mockHousingLocations;
+    
+    return searchIn.find(location => location.id === id);
   }
 
   submitApplication(firstName: string, lastName: string, email: string) {
-    // tslint:disable-next-line
-    console.log(firstName, lastName, email);
+    console.log(`Application submitted: ${firstName} ${lastName}, ${email}`);
   }
-  
 }
