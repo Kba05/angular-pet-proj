@@ -1,27 +1,18 @@
-import {Component, inject} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {HousingLocationComponent} from '../housing-location/housing-location.component';
-import {HousingLocation} from '../housinglocation';
-import {HousingService} from '../housing.service';
+import { Component, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+import { tuiDialog } from '@taiga-ui/core';
+
+import { HousingLocationComponent } from '../housing-location/housing-location.component';
+import { HousingLocation } from '../housinglocation';
+import { HousingService } from '../housing.service';
+import { CustomDialog } from '../custom-dialog/custom-dialog.component';
 
 @Component({
   selector: 'app-home',
   imports: [CommonModule, HousingLocationComponent],
-  template: `
-    <section>
-      <form>
-        <input type="text" placeholder="Filter by city" #filter />
-        <button class="primary" type="button" (click)="filterResults(filter.value)">Search</button>
-      </form>
-    </section>
-    <section class="results">
-      <app-housing-location
-        *ngFor="let housingLocation of filteredLocationList"
-        [housingLocation]="housingLocation"
-      ></app-housing-location>
-    </section>
-  `,
-  styleUrls: ['./home.component.css'],
+  templateUrl: './home.template.html',
+  styleUrl: './home.component.less',
 })
 
 export class HomeComponent {
@@ -29,7 +20,7 @@ export class HomeComponent {
   housingLocationList: HousingLocation[] = [];
   housingService: HousingService = inject(HousingService);
   filteredLocationList: HousingLocation[] = [];
-  
+
   constructor() {
     this.housingService.getAllHousingLocations().then((housingLocationList: HousingLocation[]) => {
       this.housingLocationList = housingLocationList;
@@ -45,6 +36,15 @@ export class HomeComponent {
     this.filteredLocationList = this.housingLocationList.filter((housingLocation) =>
       housingLocation?.city.toLowerCase().includes(text.toLowerCase()),
     );
+  }
+
+  private readonly dialog = tuiDialog(CustomDialog, {
+    dismissible: true,
+    label: 'Add housing location'
+  });
+
+  protected showDialog(): void {
+    this.dialog().subscribe();
   }
 
 }

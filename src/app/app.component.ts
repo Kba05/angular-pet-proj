@@ -1,24 +1,21 @@
-import {Component} from '@angular/core';
-import {RouterLink, RouterOutlet} from '@angular/router';
+import { Component, inject, OnInit } from '@angular/core';
+import { RouterLink, RouterOutlet } from '@angular/router';
+
+import { TuiRoot } from "@taiga-ui/core";
+
+import { HousingService } from './housing.service';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterLink, RouterOutlet],
-  template: `
-    <main>
-      <a [routerLink]="['/']">
-        <header class="brand-name">
-          <img class="brand-logo" src="/assets/logo.svg" alt="logo" aria-hidden="true" />
-        </header>
-      </a>
-      <section class="content">
-        <router-outlet></router-outlet>
-      </section>
-    </main>
-  `,
-  styleUrls: ['./app.component.css'],
+  imports: [RouterLink, RouterOutlet, TuiRoot],
+  templateUrl: './app.template.html',
+  styleUrl: './app.component.less',
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'homes';
+  housingService = inject(HousingService);
+  ngOnInit() {
+    this.housingService.removeHousingLocationsFromLS()
+  }
 }

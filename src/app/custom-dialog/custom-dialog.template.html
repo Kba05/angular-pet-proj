@@ -1,0 +1,50 @@
+ <form [formGroup]="addHousingForm" (ngSubmit)="submit()" class="housing-add-form">
+    <tui-textfield>
+        <label tuiLabel>Type a name*</label>
+        <input tuiAutoFocus tuiTextfield formControlName="name"/>
+    </tui-textfield>
+    <tui-error [error]="[] | tuiFieldError | async" formControlName="name" />
+
+    <tui-textfield>
+        <label tuiLabel>Type a city*</label>
+        <input tuiTextfield formControlName="city" />
+    </tui-textfield>
+    <tui-error  [error]="[] | tuiFieldError | async" formControlName="city"/>
+
+    <tui-textfield>
+        <label tuiLabel>State</label>
+        <input tuiTextfield formControlName="state" />
+    </tui-textfield>
+
+    <tui-textfield>
+        <label tuiLabel>Photo URL</label>
+        <input tuiTextfield formControlName="photo" />
+    </tui-textfield>
+    <tui-error [error]="[] | tuiFieldError | async" formControlName="photo" />
+
+    <tui-textfield>
+        <label tuiLabel>Available Units</label>
+        <input tuiInputNumber formControlName="availableUnits" />
+    </tui-textfield>
+    <tui-error [error]="[] | tuiFieldError | async" formControlName="availableUnits" />
+
+    <label tuiLabel>
+        <input tuiCheckbox  type="checkbox" formControlName="wifi"/>
+        WiFi Available
+    </label>
+
+    <label tuiLabel>
+        <input tuiCheckbox  type="checkbox" formControlName="laundry"/>
+        Laundry Available
+    </label>
+
+    <tui-textfield>
+        <label tuiLabel>Coordinates*</label>
+        <input tuiTextfield formControlName="coordinates" />
+    </tui-textfield>
+    <tui-error [error]="[] | tuiFieldError | async" formControlName="coordinates" />
+
+    <button size="m" tuiButton type="submit" [disabled]="!hasValue">
+        Submit
+    </button>
+</form>
