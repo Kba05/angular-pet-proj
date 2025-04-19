@@ -9,7 +9,7 @@
             "availableUnits": 4,
             "wifi": true,
             "laundry": true,
-            "coordinates":""
+            "coordinates":"39.739991, -104.991285"
         },
         {
             "id": "1",
@@ -19,7 +19,8 @@
             "photo": "https://angular.dev/assets/images/tutorials/common/brandon-griggs-wR11KBaB86U-unsplash.jpg",
             "availableUnits": 0,
             "wifi": false,
-            "laundry": true
+            "laundry": true,
+            "coordinates":"39.614527, -104.047364"
         },
         {
             "id": "2",
@@ -29,7 +30,8 @@
             "photo": "https://angular.dev/assets/images/tutorials/common/i-do-nothing-but-love-lAyXdl1-Wmc-unsplash.jpg",
             "availableUnits": 1,
             "wifi": false,
-            "laundry": false
+            "laundry": false,
+            "coordinates":"39.013831, -104.702330"
         },
         {
             "id":" 3",
@@ -39,7 +41,8 @@
             "photo": "https://angular.dev/assets/images/tutorials/common/ian-macdonald-W8z6aiwfi1E-unsplash.jpg",
             "availableUnits": 1,
             "wifi": true,
-            "laundry": false
+            "laundry": false,
+            "coordinates":"39.739991, -104.322560"
         },
         {
             "id": "4",
@@ -49,7 +52,8 @@
             "photo": "https://angular.dev/assets/images/tutorials/common/krzysztof-hepner-978RAXoXnH4-unsplash.jpg",
             "availableUnits": 1,
             "wifi": true,
-            "laundry": false
+            "laundry": false,
+            "coordinates":"40.583476, -105.066964"
         },
         {
             "id": "5",
@@ -59,7 +63,8 @@
             "photo": "https://angular.dev/assets/images/tutorials/common/r-architecture-JvQ0Q5IkeMM-unsplash.jpg",
             "availableUnits": 2,
             "wifi": true,
-            "laundry": true
+            "laundry": true,
+            "coordinates":"40.523915, -104.850592"
         },
         {
             "id": "6",
@@ -69,7 +74,8 @@
             "photo": "https://angular.dev/assets/images/tutorials/common/phil-hearing-IYfp2Ixe9nM-unsplash.jpg",
             "availableUnits": 5,
             "wifi": true,
-            "laundry": true
+            "laundry": true,
+            "coordinates":"40.636432, -104.753929"
         },
         {
             "id": "7",
@@ -79,7 +85,8 @@
             "photo": "https://angular.dev/assets/images/tutorials/common/r-architecture-GGupkreKwxA-unsplash.jpg",
             "availableUnits": 2,
             "wifi": true,
-            "laundry": true
+            "laundry": true,
+            "coordinates":"40.704532, -105.013989"
         },
         {
             "id": "8",
@@ -89,7 +96,8 @@
             "photo": "https://angular.dev/assets/images/tutorials/common/saru-robert-9rP3mxf8qWI-unsplash.jpg",
             "availableUnits": 10,
             "wifi": false,
-            "laundry": false
+            "laundry": false,
+            "coordinates":"40.250091, -103.802440"
         },
         {
             "id": "9",
@@ -99,7 +107,8 @@
             "photo": "https://angular.dev/assets/images/tutorials/common/webaliser-_TPTXZd9mOo-unsplash.jpg",
             "availableUnits": 6,
             "wifi": true,
-            "laundry": true
+            "laundry": true,
+            "coordinates":"40.587672, -102.304000"
         }
     ]
 }

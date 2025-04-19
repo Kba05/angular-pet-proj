@@ -1,11 +1,21 @@
-<section class="header_tools">
-    <form>
+<div class="split-container">
+  <div class="list-section">
+    <section class="header_tools">
+      <form>
         <input type="text" placeholder="Filter by city" #filter />
         <button class="primary" type="button" (click)="filterResults(filter.value)">Search</button>
-    </form>
-    <button class="primary" type="button" (click)="showDialog()">Add house location</button>
-</section>
-<section class="results">
-    <app-housing-location *ngFor="let housingLocation of filteredLocationList"
-        [housingLocation]="housingLocation"></app-housing-location>
-</section>
+      </form>
+      <button class="primary" type="button" (click)="showDialog()">Add house location</button>
+    </section>
+    <section class="results">
+      <app-housing-location *ngFor="let housingLocation of filteredLocationList" 
+      [housingLocation]="housingLocation" (click)="centerMap(housingLocation)">
+      </app-housing-location>
+    </section>
+  </div>
+
+  <div class="map-section">
+    <div leaflet [leafletOptions]="mapOptions" (leafletMapReady)="onMapReady($event)" class="map-container">
+    </div>
+  </div>
+</div>
